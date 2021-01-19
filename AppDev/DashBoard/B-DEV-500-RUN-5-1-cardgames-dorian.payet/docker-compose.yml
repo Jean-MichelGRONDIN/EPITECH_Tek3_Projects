@@ -1,0 +1,25 @@
+version: "3"
+services:
+    api:
+        build: "./api"
+        restart: "always"
+        environment:
+            - "API_PORT=3030"
+        networks:
+            - "front-back"
+        ports:
+            - "3030:3030"
+    app:
+        build: "./app"
+        restart: "always"
+        environment:
+            - "API_IP=api"
+            - "API_PORT=3030"
+            - "PORT=8080"
+        networks:
+            - "front-back"
+        ports:
+            - "8080:8080"
+networks:
+    front-back:
+        driver: "bridge"

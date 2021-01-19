@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "InstaGur2.0"

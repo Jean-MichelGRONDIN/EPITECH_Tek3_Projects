@@ -1,6 +1,3 @@
-trucs_manquant.txt
-.vscode
-node_modules/
 *.iml
 .gradle
 /local.properties
