@@ -1,0 +1,26 @@
+# Fonctionne probabalement pas (jamais étais tester)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-volume
+spec:
+  capacity:
+    storage: 512Mi
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: manual
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-volume-claim
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 512Mi
+  storageClassName: manual
+  selector:
+    matchLabels:
+      release: "stable"

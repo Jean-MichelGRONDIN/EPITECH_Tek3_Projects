@@ -1,0 +1,12 @@
+# Marche pas 100% sure (probablement pas)
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: hello-world
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8081

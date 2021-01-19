@@ -1,0 +1,87 @@
+jenkins:
+  systemMessage: "Welcome to the Chocolatine-Powered Marvin Jenkins Instance."
+  remotingSecurity:
+    enabled: true
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+            - name: "admin"
+              description: "Marvin master"
+              permissions:
+              - "Overall/Administer"
+              assignments:
+                - "chocolateen"
+            - name: "ape"
+              description: "Pedagogical team member"
+              permissions:
+                - "Job/Build"
+                - "Job/Workspace"
+                - "Overall/Read"
+                - "Job/Read"
+              assignments:
+                - "i_dont_know"
+            - name: "gorilla"
+              description: "Group Obsessively Researching Innovation Linked to Learning and Accomplishment"
+              permissions:
+                - "Job/Read"
+                - "Overall/Read"
+                - "Job/Workspace"
+                - "Job/Move"
+                - "Job/Create"
+                - "Job/Delete"
+                - "Job/Configure"
+                - "Job/Build"
+                - "Job/Cancel"
+              assignments:
+                - "vaugie_g"
+            - name: "assist"
+              description: "Assistant"
+              permissions:
+                - "Job/Read"
+                - "Job/Workspace"
+                - "Overall/Read"
+              assignments:
+                - "nasso"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: "chocolateen"
+         name: "Hugo"
+         password: ${USER_CHOCOLATEEN_PASSWORD}
+       - id: "vaugie_g"
+         name: "Garance"
+         password: ${USER_VAUGIE_G_PASSWORD}
+       - id: "i_dont_know"
+         name: "Jeremy"
+         password: ${USER_I_DONT_KNOW_PASSWORD}
+       - id: "nasso"
+         name: "Nassim"
+         password: ${USER_NASSO_PASSWORD}
+jobs:
+- script: >
+    folder('/Tools') {
+      description('Folder for miscellaneous tools.')
+    }
+
+    freeStyleJob('/Tools/clone-repository') {
+      parameters {
+        stringParam('GIT_REPOSITORY_URL', null, 'Git URL of the repository to clone')
+      }
+      steps {
+        shell('git clone $GIT_REPOSITORY_URL')
+      }
+      wrappers {
+        preBuildCleanup()
+      }
+    }
+
+    freeStyleJob('/Tools/SEED') {
+      parameters {
+        stringParam('GITHUB_NAME', null, 'GitHub repository owner/repo_name (e.g.: "EpitechIT31000/chocolatine")')
+        stringParam('DISPLAY_NAME', null, 'Display name for the job')
+      }
+      steps {
+      }
+    }
