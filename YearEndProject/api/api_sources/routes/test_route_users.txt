@@ -1,0 +1,59 @@
+/checktoken:
+
+#See if my token is correct
+
+##You will have to login and get the token returned for the following request
+
+fetch("http://localhost:8080/users/checktoken", {
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer $INSERT_TOKEN'}}).then(res => res.json())
+
+
+/linknewaccount:
+
+#Link a new account to a user with a valid service
+
+fetch("http://localhost:8080/users/linknewaccount", {
+    method: "POST",
+    body: 'servicename=Microsoft&refreshtoken=test1234&accesstoken=4321tset',
+    headers: {
+                'Authorization': 'Bearer $INSERT_TOKEN',
+                'Content-type': 'application/x-www-form-urlencoded'
+            }
+}).then(res => res.json())
+
+#Link a new account to a user with a valid service BUT Service name is not correct
+
+fetch("http://localhost:8080/users/linknewaccount", {
+    method: "POST",
+    body: 'servicename=Microsoftpfeu&refreshtoken=test1234&accesstoken=4321tset',
+    headers: {
+                'Authorization': 'Bearer $INSERT_TOKEN',
+                'Content-type': 'application/x-www-form-urlencoded'
+            }
+}).then(res => res.json())
+
+
+/deletelinkedaccount:
+
+#Delete a linked service of an account
+
+fetch("http://localhost:8080/users/deletelinkedaccount", {
+    method: "DELETE",
+    body: 'servicename=Microsoft',
+    headers: {
+                'Authorization': 'Bearer $INSERT_TOKEN',
+                'Content-type': 'application/x-www-form-urlencoded'
+            }
+}).then(res => res.json())
+
+#Delete a linked service of an account BUT Service name is not correct
+
+fetch("http://localhost:8080/users/deletelinkedaccount", {
+    method: "DELETE",
+    body: 'servicename=Microsoftpfeu',
+    headers: {
+                'Authorization': 'Bearer $INSERT_TOKEN',
+                'Content-type': 'application/x-www-form-urlencoded'
+            }
+}).then(res => res.json())

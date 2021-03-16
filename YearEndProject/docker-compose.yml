@@ -1,0 +1,39 @@
+version: "3"
+services:
+    client_mobile:
+        container_name: client_mobile
+        build: "./mobile"
+        volumes:
+            - apk_volume:/tmp
+    server:
+        container_name: server
+        build: "./api"
+        restart: "always"
+        environment:
+            - "API_PORT=8080"
+        ports:
+            - "8080:8080"
+        depends_on:
+            - "client_mobile"
+        volumes:
+            - apk_volume:/opt/public/apk_volume
+    client_web:
+        container_name: client_web
+        build: "./app"
+        restart: "always"
+        environment:
+            - "PORT=8081"
+        ports:
+            - "8081:8081"
+        depends_on:
+            - "client_mobile"
+            - "server"
+    area_robot:
+        container_name: area_robot
+        build: "./robot"
+        restart: "always"
+        depends_on:
+            - "client_mobile"
+            - "server"
+volumes:
+    apk_volume:

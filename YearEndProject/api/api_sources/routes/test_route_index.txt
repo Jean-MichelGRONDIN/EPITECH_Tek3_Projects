@@ -1,0 +1,38 @@
+/register:
+
+#Register un user et si email ou username deja pris
+
+fetch("http://localhost:8080/register", { method: "POST",
+body: 'username=totoLeBoss&firstname=toto1&lastname=toto2&email=toto@gmail.fr&password=1234',
+            headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+}).then(res => res.json())
+
+#Manque une/des info(s) pour créer un user
+
+fetch("http://localhost:8080/register", { method: "POST",
+body: 'username=totoLeBoss&firstname=toto1&lastname=toto2&email=toto@gmail.fr',
+            headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+}).then(res => res.json())
+
+
+
+
+/login
+
+#Login when everything is fine
+
+fetch("http://localhost:8080/login", { method: "POST",
+body: 'username=totoLeBoss&password=1234',
+            headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+}).then(res => res.json())
+
+
+
+/thirdpartyLogin
+
+#Login for the first time (create the new user) OR when not the first time
+
+fetch("http://localhost:8080/thirdpartyLogin", { method: "POST",
+body: 'username=totoLeBoss&firstname=toto1&lastname=toto2&email=toto@gmail.fr&password=1234',
+            headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+}).then(res => res.json())

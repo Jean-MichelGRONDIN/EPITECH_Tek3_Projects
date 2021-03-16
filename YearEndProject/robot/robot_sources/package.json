@@ -1,0 +1,12 @@
+{
+  "name": "robot-sources",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "dependencies": {
+    "mongoose": "^5.11.17",
+    "node-fetch": "^2.6.1"
+  }
+}

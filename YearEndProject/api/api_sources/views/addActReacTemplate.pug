@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  a(href="/admin") Back
+  h2 #{title}
+  form(action=dest, method="post")
+    select(name='servicename', id='servicename')
+      each val in data
+          option=val
+    div
+      label(for="newname") Name:
+      input(id="newname" name="newname")
+    div
+      label(for="newdescription") Description:
+      input(id="newdescription" name="newdescription")
+    button(type="submit") Submit

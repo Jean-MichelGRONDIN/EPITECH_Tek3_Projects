@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  a(href="/admin") Back
+  h2 #{title}
+  form(action=dest, method="post")
+    select(name='username', id='username')
+      each val in data
+          option=val
+    br
+    button(type="submit") Submit

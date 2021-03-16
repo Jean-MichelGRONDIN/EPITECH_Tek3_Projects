@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  a(href="/admin") Back
+  h1 Add a service
+  form(action="/admin/addservice", method="post")
+    div
+      label(for="servicename") Service's Name
+      input(id="servicename" name="servicename")
+    div
+      label(for="serviceclientid") The Service's client_id
+      input(id="serviceclientid" name="serviceclientid")
+    button(type="submit") Submit

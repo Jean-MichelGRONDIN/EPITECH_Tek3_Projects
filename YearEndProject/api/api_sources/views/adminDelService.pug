@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  a(href="/admin") Back
+  h1 Delete a service
+  form(action="/admin/delservice", method="post")
+    div
+      label(for="servicename") Service's Name
+      input(id="servicename" name="servicename")
+    button(type="submit") Submit
